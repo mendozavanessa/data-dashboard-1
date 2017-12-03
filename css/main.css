@@ -1,0 +1,233 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/* ***********************header******************/
+.tab{
+  color: #000;
+  width: 150px;
+  outline: none;
+  margin-left: 10px;
+  border: none;
+  transform: translateY(17%);
+  background-color: inherit;
+  font-size: 18px;
+  position: relative;
+  bottom: 40px;
+ }
+.tab:active {
+  transform: translateY(40%);
+  border-bottom: 4px solid blue;
+}
+.main-header {
+    background-color: #ffc107;
+    position: relative;
+    max-height: 103px;
+    z-index: 1030;
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar-static-top {
+    z-index: 1000;
+}
+
+.navbar-right-menu {
+    float: right;
+}
+.inline-block{
+  display: inline-block;
+}
+.block{
+  display: block;
+}
+.list-style{
+
+}
+
+.nav-search {
+    position: absolute;
+    left: 50%;
+    top: 44px;
+}
+
+.form-control {
+    width: 400px;
+    border-radius: 21px;
+    border: 1px solid #e6ecf0;
+    color: #14171a;
+    font-size: 12px;
+    padding: 6px 32px 8px 12px;
+    transition: all .2s ease-in-out;
+}
+
+.form-control:focus {
+    border: 1px solid #14171a;
+    outline: none;
+}
+
+.input-group-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+
+}
+
+.input-group-btn span {
+    color: #14171a;
+}
+
+.nav-right {
+    display: inline-block;
+}
+
+.navbar-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+    position: relative;
+    right: 30px;
+    top: 30px;
+}
+
+.mensaje {
+    position: relative;
+    right: 50px;
+    top: 20px;
+    font-size: 25px;
+}
+
+.mensaje a {
+    text-decoration: none;
+}
+
+.icon-envelope {
+    color: #fff;
+}
+/* ***********************/
+.main-sidebar {
+    background-color: #2b2b2b;
+    position: absolute;
+    left: 0;
+    padding-top: 20px;
+    height: auto;
+    width: 230px;
+    z-index: 810;
+}
+.sidebar {
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.text {
+    text-align: center;
+}
+
+.main-image img {
+    position: relative;
+    left: 35px;
+}
+
+.main-text h2 {
+    color: white;
+}
+
+.main-text h3, span, h4 {
+    color: #ffc107;
+    position: relative;
+}
+
+.main-text span, h4 {
+    display: inline;
+    margin: 0;
+}
+
+.main-text span {
+    margin-right: 5px;
+}
+
+/******************************************************/
+.listas {
+  margin-top: 23.80%;
+  width: 230px;
+  height: 600px;
+  position: static;
+  z-index: 1000;
+  box-shadow: 0 0 2px blue;
+}
+.yellow{
+  background-color: rgb(255,193,7);
+}
+.hidden {
+    display: none;
+}
+#ul-region {
+  padding-left: 0;
+}
+.region{
+  height: 45px;
+  text-align: justify;
+  padding-left: 10px;
+  font-size: 17px;
+}
+.list-region{
+  height: 45px;
+  text-align: justify;
+  font-size: 15px;
+  list-style: none;
+  margin-top: 0;
+}
+.listas a{
+  display: block;
+  text-decoration: none;
+  color: #000;
+  width: 100%;
+  height: 100%;
+}
+.flags{
+  width: 30px;
+  height: 18px;
+  margin: 0 10px;
+  transform: translateY(30%);
+}
+.region:hover, .list-region:hover, .list-lim:hover, .list-aqp:hover, .list-scl:hover, .list-cdmx:hover{
+  background-color: rgb(236,235,235);
+}
+.fa-sort-desc{
+  margin-left: 10px;
+  color: rgba(43,43,43,0.8);
+}
+.margin-list{
+  margin-top: 2px;
+  list-style: none;
+}
+.cajita {
+  padding-left: 0;
+}
+.list-lim, .list-aqp, .list-scl, .list-cdmx{
+  font-size: 15px;
+  padding: 7px 0;
+  padding-left: 50px;
+}
+/*Modificando Main*/
+.margin{
+  margin-top: 60.89px;
+  margin-left: 252px;
+}
+/***********************************/
+.lidia-claudia {
+  margin: 0 400px;
+  background-color: aqua;
+  display: inline-block;
+  position: absolute;
+  top: 200px;
+}
