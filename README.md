@@ -58,7 +58,7 @@ _Adicional:_
 
 * Antes de construir nuestro programa, hicimos un flujograma.
 
-![Flujograma](assets/images/flugrama.png)
+![Flujograma](assets/images/flujograma.png)
 
 * Como motivo de ayuda, realizamos un sketch con los puntos que nos pedían realizar, para así aclarar nuestras dudas.
 
