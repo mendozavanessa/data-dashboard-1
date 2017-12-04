@@ -68,12 +68,12 @@
         </section>
     </aside>
     <!--Contenido de la Página-->
-    <div class="content-wrapper">
+    <div class="content-wrapper" id="paginaView" class="enabled">
         <section class="content-header">
             <div class="container-promo">
-                <span>Promoción</span>
+                <span>SEDE-PROMOCION</span>
             </div>
-            <select id="filtro" name="filtro">
+            <select id="filtro" class="filtro"name="filtro">
                 <optgroup label="Lima">
                   <option value="0"><span>Lima</span> 2016-2</option>
                   <option value="1"><span>Lima</span> 2017-1</option>
@@ -100,7 +100,7 @@
               <div class="box-data-students">
                 <h1>enrollment</h1>
                   <div class="number-box"><span id="total"></span># students currently enrolled</div>
-                  <div class="number-box"> <span id="porcentaje"></span>%dropout</div>
+                  <div class="number-box desercion"> <span id="porcentaje"></span>%dropout</div>
                   <div class="box-google-charts">
                     <div id="chart_div_enrollment"></div>
                   </div>
@@ -114,7 +114,7 @@
               <div class="box-data-students">
                 <h1>net promoter score</h1>
                   <div class="number-box"> <span id="nps"></span>%cumulative nps</div>
-                  <div class="number-box" id="porcentajes"> <span id="nps-porciento">porcentajes</span></div>
+                  <div class="numberDos-box"> <span id="nps-porciento">porcentajes</span></div>
                   <div class="box-google-charts">
                     <div id="chart_div_nps"></div>
                   </div>
@@ -173,6 +173,9 @@
               </div>
             </div>
         </section>
+    </div>
+    <div class="disabled" id="paginaStudents">
+
     </div>
 </div>
 <!-- Aquí va tus archivos JS -->

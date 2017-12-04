@@ -194,12 +194,12 @@ window.addEventListener('load', function() {
             arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;
           }
         }
-    }
+      }
       var porcentajeTech = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100);
       totalTechSprint.textContent = arraySprintTech[nsprint - 1];
       prctTechSprint.textContent = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
 
-      drawSkillTech(porcentajeTech, (100-porcentajeTech));
+      drawSkillTech(porcentajeTech, (100 - porcentajeTech));
     });
     sprintFiltroHse.addEventListener('change', function(event) {
       var nsprint = parseInt(event.target.value) + 1;
@@ -220,6 +220,20 @@ window.addEventListener('load', function() {
       drawSkillHSE(porcentajeHSE, (100 - porcentajeHSE));
     });
   }
+  /* evento click para la navegacion facetada de students para que muestre cuando se haga click y se borre la vista de overview*/
+  students.addEventListener('click', function() {
+    paginaView.classList.remove('enabled');
+    paginaView.classList.add('disabled');
+    paginaStudents.classList.remove('disabled');
+    paginaStudents.classList.add('enabled');
+  });
+  /* evento click para la navegacion facetada overview para que se muestre******************************************/
+  view.addEventListener('click', function() {
+    paginaView.classList.remove('disabled');
+    paginaView.classList.add('enabled');
+    paginaStudents.classList.remove('enabled');
+    paginaStudents.classList.add('disabled');
+  });
 });
 
 /* ******GRAFICOS */

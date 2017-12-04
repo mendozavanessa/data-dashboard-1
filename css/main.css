@@ -71,6 +71,12 @@ text-transform: uppercase;
     left: 55%;
     top: 44px;
 }
+.disabled {
+  display: none;
+}
+.enabled{
+  display: block;
+}
 
 .form-control {
     width: 400px;
@@ -231,11 +237,14 @@ hr {
 
 /*Contenido de la Pagina*/
 .content-wrapper {
-    margin-left: 230px;
+  margin-left: 230px;
+  background: #f7f7f7;
+  width: 90%;
+  height: 2500px;
 }
 
 .content-header {
-    margin: 10px 0 5px 0;
+    margin: 0px 0 5px 0;
 }
 
 /*Promociones hiddem*/
@@ -531,32 +540,58 @@ div .tab a:active {
     margin: 0
 }
 /*****************************************************************************/
-.box-data-students {
-    width: 300px;
-    outline: 1px solid blue;
-    float: left;
-    margin: 30px;
+.filtro {
+  outline: none;
+    border: none;
+    font-size: 18px;
+    margin-left: 10px;
 }
-#porcentajes{
-  width: 132px;
-  margin-left: 0px;
-  height: 60px;
+.box-data-students {
+  width: 300px;
+  float: left;
+  margin: 30px;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid black;
+}
+.desercion {
+  background-color: red !important;
+}
+#nps-porciento {
+  color: white;
+  margin: 20px auto;
+  display: inline-block;
+}
+.numberDos-box {
+width: 120px;
+height: 60px;
+float: left;
+margin: 5px 20px;
+color: white;
+text-align: center;
+font-size: 13px;
+text-transform: uppercase;
+border-radius: 4px;
+background-color: #35cf35;
 }
  .number-box {
-    width: 100px;
-    height: 50px;
-    outline: 1px solid yellow;
-    float: left;
-    margin: 5px 20px;
-    color: blue;
-    text-align: center;
-    font-size: 13px;
-    text-transform: uppercase;
+   width: 100px;
+height: 60px;
+float: left;
+margin: 5px 20px;
+color: white;
+text-align: center;
+font-size: 13px;
+text-transform: uppercase;
+border-radius: 4px;
+background-color: #35cf35;
 }
 .number-box span {
   text-align: center;
-  color: blue;
-  display: block;
+color: white;
+font-weight: 800;
+display: block;
+font-size: 18px;
 }
 h1 {
   margin: 5px 3px;
@@ -596,4 +631,10 @@ h1 {
   position: relative;
   top: 100px;
   left: -250px;
+}
+#paginaStudents {
+  background-color: aqua;
+  width: 90%;
+  height: 500px;
+  margin-left: 230px;
 }
