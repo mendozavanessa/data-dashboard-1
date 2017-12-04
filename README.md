@@ -12,7 +12,7 @@
 
 _Este producto final consistió en:_
 
-** Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían:
+**Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían:**
 
 * El total de estudiantes presentes por sede y generación.
 * El porcentaje de deserción de estudiantes.
