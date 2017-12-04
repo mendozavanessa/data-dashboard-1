@@ -123,10 +123,6 @@ window.addEventListener('load', function() {
         sprintArray[i] = arrayNPS[i];
       }
       drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-      /* *********************************************calculando los puntos obtenidos en tech********************************************************************/
-
-      /* ********************************************************calculando los puntos en hse*******************************************************************/
-
       /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
       var pctjStudentsSat = 0;
       var arrayMeet = [];
