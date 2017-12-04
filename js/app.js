@@ -230,6 +230,9 @@ students.addEventListener('click', function() {
   paginaView.classList.add('disabled');
   paginaStudents.classList.remove('disabled');
   paginaStudents.classList.add('enabled');
+  view.firstElementChild.classList.remove('enabled');
+  view.firstElementChild.classList.add('disabled');
+  students.firstElementChild.classList.toggle('enabled');
 });
 /* evento click para la navegacion facetada overview para que se muestre******************************************/
 view.addEventListener('click', function() {
@@ -237,6 +240,9 @@ view.addEventListener('click', function() {
   paginaView.classList.add('enabled');
   paginaStudents.classList.remove('enabled');
   paginaStudents.classList.add('disabled');
+  view.firstElementChild.classList.toggle('enabled');
+  students.firstElementChild.classList.remove('enabled');
+  students.firstElementChild.classList.add('disabled');
 });
 /* ******GRAFICOS */
 function drawTotalStudents(current, deserted) {
@@ -267,12 +273,12 @@ function drawAchievement(sp, nsp) {
             ['Task', 'Hours per Day'],
             ['Superan', sp],
             ['No superan', nsp]
-          ]);  
-          var options = {          
+          ]);
+          var options = {
             pieHole: 0.3,
             'colors': ['#3366cc', '#990099']
           };
-  
+
           var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
           chart.draw(data, options);
         }
@@ -287,7 +293,7 @@ function drawNetPromoter(s1, s2, s3, s4) {
       ['S1', s1, 'gold'],
       ['S2', s2, '#ea7430'],
       ['S3', s3, '#1b9e77'],
-      ['S4', s4, '#4285f4']  
+      ['S4', s4, '#4285f4']
     ]);
 
     var view = new google.visualization.DataView(data);
@@ -443,7 +449,7 @@ function drawJediRatings(s1, s2, s3, s4) {
 
 // EVENTO PARA LA SECCION STUDENTS
 window.addEventListener('load', function() {
-  
+
   var columRight = document.getElementById('colum-right');
   columRight.setAttribute('class', 'style-none');
   // EVENTO LIMA 2016-2
@@ -1252,4 +1258,3 @@ window.addEventListener('load', function() {
     }
   });
 });
-

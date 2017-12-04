@@ -141,7 +141,7 @@ text-transform: uppercase;
     position: absolute;
     left: 0;
     padding-top: 50px;
-    height: auto;
+    height: 1650px;
     width: 230px;
     z-index: 810;
 }
@@ -178,10 +178,15 @@ text-transform: uppercase;
     margin-right: 5px;
 }
 
-hr {
+/*hr {
     margin-top: 30px;
     width: 100%;
     color: #b8c7ce;
+
+}*/
+hr {
+width: 100%;
+border: 2px solid #1f4658;
 
 }
 
@@ -560,9 +565,9 @@ div .tab a:active {
 }
 #nps-porciento {
   color: white;
-  margin: 20px auto;
   display: inline-block;
 }
+
 .numberDos-box {
 width: 120px;
 height: 60px;
@@ -706,7 +711,7 @@ border-radius:2px;
     height: 100%;
     text-transform: uppercase;
   }
-  
+
   .students-skills{
     position:relative;
     left: 0;
@@ -773,3 +778,9 @@ border-radius:2px;
     background:white;
   }
 
+  .box-number {
+    display: block;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+  }

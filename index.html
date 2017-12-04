@@ -16,9 +16,9 @@
         <img src="assets/images/logo_laboratoria.png" alt="Logo" width=230>
         <div class="list-page">
           <ul><!--menu nav facetada -->
-            <li id="overview">overview</li>
-            <li id="students">students</li>
-            <li>teachers</li>
+            <li id="overview">overview <hr class="enabled"> </li>
+            <li id="students">students <hr class="disabled"></li>
+            <li>teachers <hr class="disabled"></li>
         </ul>
         </div>
         <!--Search-->
@@ -64,7 +64,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
         </section>
     </aside>
     <!--Contenido de la Página-->
@@ -77,7 +76,7 @@
                 <optgroup label="Lima">
                   <option value="2"><span>Lima</span> 2017-2</option>
                   <option value="0"><span>Lima</span> 2016-2</option>
-                  <option value="1"><span>Lima</span> 2017-1</option>                  
+                  <option value="1"><span>Lima</span> 2017-1</option>
                 </optgroup>
                 <optgroup label="Arequipa">
                   <option value="3"><span>Arequipa</span> 2016-2</option>
@@ -130,8 +129,8 @@
                       <option value="3">Sprint 4</option>
                   </select>
                 </div>
-                  <div class="data-number-list"> <span id="totalTechSprint"></span># students that meet the target</div>
-                  <div class="data-number-list"> <span id="prctTechSprint"></span>% of total</div>
+                  <div class="data-number-list"> <span class="box-number" id="totalTechSprint"></span># students that meet the target</div>
+                  <div class="data-number-list"> <span class="box-number" id="prctTechSprint"></span>% of total</div>
                   <div class="caja2">
                     <div id="chart_div_techs" style="width: 100%; height: 200px;"></div>
                   </div>
@@ -146,8 +145,8 @@
                     <option value="3">Sprint 4</option>
                   </select>
                 </div>
-                  <div class="data-number-list"> <span id="totalHseSprint"></span>#overall class average</div>
-                  <div class="data-number-list"> <span id="prctHseSprint"></span>% of students that meet the target</div>
+                  <div class="data-number-list"> <span class="box-number" id="totalHseSprint"></span>#overall class average</div>
+                  <div class="data-number-list"> <span class="box-number" id="prctHseSprint"></span>% of students that meet the target</div>
                   <div class="caja2">
                     <div id="chart_div_hse" style="width: 100%; height: 500px;"></div>
                   </div>
@@ -202,11 +201,11 @@
                  <li class="capital-letter"><a id="mexico20171" href=""></a>2017 i</li>
                  <li class="capital-letter"><a id="mexico20172"href=""></a>2017 ii</li>
              </ul>
-    
+
          </div>
       </div>
       <div  id="colum-right" class="">
-    
+
       </div>
     </div>
 
