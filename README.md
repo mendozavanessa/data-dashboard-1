@@ -12,7 +12,7 @@
 
 _Este producto final consistió en:_
 
-**Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían: **
+** Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían: **
 
 * El total de estudiantes presentes por sede y generación.
 * El porcentaje de deserción de estudiantes.
@@ -36,7 +36,7 @@ _Este producto final consistió en:_
 
 _Adicional:_
 
-*Poder mostrar los datos procesados en un gráfico como el diseño propone u otra alternativa.
+* Poder mostrar los datos procesados en un gráfico como el diseño propone u otra alternativa.
 
 * Tener un botón que permita indicar que una estudiante ha salido del Bootcamp y alterar los totales afectados por este cambio.
 
@@ -44,7 +44,7 @@ _Adicional:_
 
 ## Consideraciones:
 
-*Para poder realizar el 'Code Review':*
+* Para poder realizar el 'Code Review':*
 
 * Todas las integrantes del Squad explicaron brevemente su código y obtuvieron feedback sobre la limpieza y orden de lo ya mencionado.
 
