@@ -1,140 +1,149 @@
-var region, promotion;
-var lima2 = document.getElementById('lima');
-var lim172 = document.getElementById('lim172');
-var lim171 = document.getElementById('lim171');
-var lim162 = document.getElementById('lim162');
-var satisfationBox = document.getElementById('satisfation-box');
 
-
-var divRegion = document.getElementById('divRegion');
-var lima = document.getElementById('lim');
-var arequipa = document.getElementById('aqp');
-var chile = document.getElementById('scl');
-var mexico = document.getElementById('cdmx');
-var previous = divRegion;
-var ulRegion = document.getElementById('ul-region');
-var ulAqp = document.getElementById('ul-aqp');
-var ulScl = document.getElementById('ul-scl');
-var ulCdmx = document.getElementById('ul-cdmx');
-var ulLim = document.getElementById('ul-lim');
-
+/*********************************************************/
 window.addEventListener('load', function() {
-  divRegion.addEventListener('click', showAllRegions);
-  lima.addEventListener('click', optionsLima);
-  arequipa.addEventListener('click', optionsArequipa);
-  chile.addEventListener('click', optionsChile);
-  mexico.addEventListener('click', optionsMexico);
-  function showAllRegions() {
-    // ulRegion.classList.toggle('hidden');
-    ulRegion.classList.toggle('hidden');
-    ulLim.classList.toggle('hidden');
-    paintOptions(lim172, previous);
-    // paintOptions(divRegion, previous);
-    ulAqp.classList.toggle('hidden');
-    ulScl.classList.toggle('hidden');
-    ulCdmx.classList.toggle('hidden');
-  };
-  function paintOptions(option, previous) {
-    option.classList.add('yellow');
-    if (option !== previous)
-      previous.classList.remove('yellow');
-  }
-  function optionsLima() {
-    paintOptions(lima, previous);
-    previous = lima;
-    ulLim.classList.toggle('hidden');
-  }
-  function optionsArequipa() {
-    paintOptions(arequipa, previous);
-    previous = arequipa;
-    ulAqp.classList.toggle('hidden');
-  }
-  function optionsChile() {
-    paintOptions(chile, previous);
-    previous = chile;
-    ulScl.classList.toggle('hidden');
-  }
-  function optionsMexico() {
-    paintOptions(mexico, previous);
-    previous = mexico;
-    ulCdmx.classList.toggle('hidden');
-  }
-  /* ***********************************/
-  region = lima.dataset.region;
-  promotion = lim172.dataset.promotion;
-  // Funciones para eventos de cada region y promocion
-  showMain(region, promotion);
-  // Funciones para cada elemento,
-  lima2.addEventListener('click', funcionLima);
-  lim172.addEventListener('click', funcionLim172);
-  lim171.addEventListener('click', funcionLim171);
-  lim162.addEventListener('click', funcionLim162);
+    var view = document.getElementById('overview'),
+    students = document.getElementById('students'),
+    paginaview = document.getElementById('paginaView'),
+    paginaStudents = document.getElementById('paginaStudents'),
+    total = document.getElementById('total'),
+    porcentaje = document.getElementById('porcentaje'),
+    meta = document.getElementById('meta'),
+    boxTeacher = document.getElementById('box-teacher'),
+    boxJedi = document.getElementById('box-jedi'),
+    filtro = document.getElementById('filtro'),
+    nps = document.getElementById('nps'),
+    npsPorciento = document.getElementById('nps-porciento'),
+    boxExpectativa = document.getElementById('box-expectativa'),
+    pointTech = document.getElementById('tech'),
+    pointHse = document.getElementById('hse');
+    filtro.addEventListener('change', function(event) {
+        switch (event.target.value) {
+        case '0': sedePromo('LIM', '2016-2');
+          break;
+        case '1':sedePromo('LIM', '2017-1');
+          break;
+        case '2':sedePromo('LIM', '2017-2');
+          break;
+        case '3':sedePromo('AQP', '2016-2');
+          break;
+        case '4':sedePromo('AQP', '2017-1');
+          break;
+        case '5':sedePromo('SCL', '2016-2');
+          break;
+        case '6':sedePromo('SCL', '2017-1');
+          break;
+        case '7':sedePromo('SCL', '2017-2');
+          break;
+        case '8':sedePromo('CDMX', '2017-1');
+          break;
+        case '9':sedePromo('CDMX', '2017-2');
+          break;
+        }
+        // funcion que llamara cada caso que pertenezca la opcion clikeada como parametros pasamos la sede y la promocion datos que estan en la data.js
+        function sedePromo(sede, promo) {
+          // respondiendo primera pregunta. Hallando la cantidad de alumnas y el porcentaje recorriendo un array se puede contar cuantas alumnas hay
+          var arr = data[sede][promo]['students'];
+          var cant = 0;
+          var nocant = 0;
+          for (var i = 0; i < arr.length; i++) {
+            if (arr[i].active === true) {
+              cant++;
+            } else {
+              nocant++;
+            }
+          }
+          var calculandoPorcentaje = parseInt((nocant / arr.length) * 100);
+          total.textContent = cant;
+          porcentaje.textContent = calculandoPorcentaje + '%';
+          /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
+          var sumaScore = 0;
+          for (var i = 0; i < arr.length; i++) {
+            debugger;
+            var sumaHse = 0;
+            var sumaTech = 0;
+            for (var j = 0; j < data[sede][promo]['students'][i]['sprints'].length; j++) {
+              var tech = data[sede][promo]['students'][i]['sprints'][j]['score']['tech'];
+              var hse = data[sede][promo]['students'][i]['sprints'][j]['score']['hse'];
+              sumaHse = sumaHse + hse;
+              sumaTech = sumaTech + tech;
+            }
+            if (sumaHse > 3360 && sumaTech > 5040) {
+              sumaScore++;
+            }
+          }
+          meta.innerHTML = sumaScore;
+          /* ***************************************************************cantida de nps*********************************************************************/
+          var arrNps = data[sede][promo]['ratings'];
+          var sum = 0;
+          var npsTotal = 0;
+          for (var i = 0; i < arrNps.length; i++) {
+            var npsPromoters = data[sede][promo]['ratings'][i]['nps']['promoters'];
+            var npsDetractors = data[sede][promo]['ratings'][i]['nps']['detractors'];
+            var npsPassive = data[sede][promo]['ratings'][i]['nps']['passive'];
+            var npsResta = npsPromoters - npsDetractors;
+            sum = sum + npsResta;
+            var npsSuma = npsPromoters + npsDetractors + npsPassive;
+            npsTotal = npsTotal + npsSuma;
+          }
+          var promoterPorcentaje = parseInt((npsPromoters / npsTotal) * 100);
+          var detractorsPorcentaje = parseInt((npsDetractors / npsTotal) * 100);
+          var passivePorcentaje = parseInt((npsPassive / npsTotal) * 100);
+          var totalNps = sum / arrNps.length;
+          nps.textContent = totalNps.toFixed(2);
+          npsPorciento.innerHTML = promoterPorcentaje + '% Promoters' + '<br>' + detractorsPorcentaje + '% Passive' + '<br>' + passivePorcentaje + '% Detractors';
+          /* *********************************************calculando los puntos obtenidos en tech********************************************************************/
+          var cantidadTech = 0;
+          for (var i = 0; i < arr.length; i++) {
+            var arrSprint = data[sede][promo]['students'][i]['sprints'];
+            var sumTech = 0;
+            for (var j = 0; j < arrSprint.length; j++) {
+              var tech2 = data[sede][promo]['students'][i]['sprints'][j]['score']['tech'];
+              sumTech = sumTech + tech2;
+              if (sumTech > (1260 * 4)) {
+                cantidadTech++;
+              }
+            }
+          }
+          pointTech.textContent = cantidadTech;
+          /* ********************************************************calculando los puntos en hse*******************************************************************/
+          var cantidadHse = 0;
+          for (var i = 0; i < arr.length; i++) {
+            var arrSprint = data[sede][promo]['students'][i]['sprints'];
+            var sumHse = 0;
+            for (var j = 0; j < arrSprint.length; j++) {
+              var hse2 = data[sede][promo]['students'][i]['sprints'][j]['score']['hse'];
+              sumHse = sumHse + hse2;
+              if (sumHse > (840 * 4)) {
+                cantidadHse++;
+              }
+            }
+          }
+          pointHse.textContent = cantidadHse;
+          /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
+          var sumaExpectativa = 0;
+          for (var i = 0; i < arrNps.length; i++) {
+            var studentNoCumple = data[sede][promo]['ratings'][i]['student']['no-cumple'];
+            var studentCumple = data[sede][promo]['ratings'][i]['student']['cumple'];
+            var studentSupera = data[sede][promo]['ratings'][i]['student']['supera'];
+            var Expectativa = ((studentSupera + studentCumple) / (studentNoCumple + studentCumple + studentSupera)) * 100;
+            sumaExpectativa = sumaExpectativa + Expectativa;
+          }
+          var porcentajeExpectativa = parseInt(sumaExpectativa / arrNps.length);
+          boxExpectativa.textContent = porcentajeExpectativa + '%';
+          /* *********************************************promedio de los profesores********************************************************************/
+          var promedioTeacher = 0;
+          for (var i = 0; i < arrNps.length; i++) {
+            var teacher = data[sede][promo]['ratings'][i]['teacher'];
+            promedioTeacher = (promedioTeacher + teacher) / arrNps.length;
+          }
+          boxTeacher.textContent = promedioTeacher.toFixed(2);
+          /* *************************************************promedio jedi*****************************************************************/
+          var promedioJedi = 0;
+          for (var i = 0; i < arrNps.length; i++) {
+            var jedi = data[sede][promo]['ratings'][i]['jedi'];
+            promedioJedi = (promedioJedi + jedi) / arrNps.length;
+          }
+          boxJedi.textContent = promedioJedi.toFixed(2);
+        }
+      });
 });
-function showMain(region, promotion) {
-  studentsSatisfation(region, promotion);
-}
-function funcionLima() {
-  region = lima2.dataset.region;
-  promotion = lim172.dataset.promotion;
-}
-function funcionLim172() {
-  promotion = lim172.dataset.promotion;
-  console.log(promotion);
-  studentsSatisfation(region, promotion);
-}
-function funcionLim171() {
-  promotion = lim171.dataset.promotion;
-  studentsSatisfation(region, promotion);
-}
-function funcionLim162() {
-  promotion = lim162.dataset.promotion;
-  studentsSatisfation(region, promotion);
-}
-/* Función para el porcentaje de estudiantes satisfechas con la experiencia de Laboratoria.*/
-function studentsSatisfation(region, promotion) {
-  var ratings = data[region][promotion]['ratings'];
-  var arrayMeet = [];
-  var total = 0;
-  var sprintArray = [0, 0, 0, 0];
-  for (var i = 0; i < ratings.length; i++) {
-    arrayMeet[i] = ratings[i]['student']['cumple'];
-  }
-  for (var i = 0; i < arrayMeet.length; i++) {
-    total = total + arrayMeet[i];
-  }
-  total = parseInt(total / arrayMeet.length);
-  satisfationBox.textContent = total;
-  for (var i = 0; i < ratings.length; i++) {
-    sprintArray[i] = arrayMeet[i];
-  }
-  drawStudentSatisfation(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-}
-/* ****GRAFICOS */
-function drawStudentSatisfation(s1, s2, s3, s4) {
-  google.charts.load('current', {packages: ['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Sprint', 'Porcentaje', { role: 'style' } ],
-      ['S1', s1, 'gold'],
-      ['S2', s2, '#ea7430'],
-      ['S3', s3, '#1b9e77'],
-      ['S4', s4, '#4285f4']
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns([0, 1,
-      { calc: 'stringify',
-        sourceColumn: 1,
-        type: 'string',
-        role: 'annotation' },
-      2]);
-    var options = {
-      width: 300,
-      height: 200,
-      bar: {groupWidth: '85%'},
-      legend: { position: 'none' },
-    };
-    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_student_satisfation'));
-    chart.draw(view, options);
-  }
-}
