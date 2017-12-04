@@ -12,7 +12,7 @@
 
 _Este producto final consistió en:_
 
-** Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían: **
+** Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían:
 
 * El total de estudiantes presentes por sede y generación.
 * El porcentaje de deserción de estudiantes.
@@ -66,16 +66,16 @@ _Adicional:_
 
 ### Día 1
 
-1. En el aula, coordinamos los lugares y las horas en las que nos íbamos a reunir para realizar el trabajo en equipo.
+* En el aula, coordinamos los lugares y las horas en las que nos íbamos a reunir para realizar el trabajo en equipo.
 
 ### Día 2
 
-1. Un grupo de compañeras (Lidia, Claudia y Katherine) se reunió el día sábado para dar comienzo al perfeccionamiento del código.
+* Un grupo de compañeras (Lidia, Claudia y Katherine) se reunió el día sábado para dar comienzo al perfeccionamiento del código.
 
 
 ### Día 3
 
-1. El Squad se reunió en casa de una compañera (Stephanie) el día domingo y procedimos a continuar trabajando en el proyecto.
+* El Squad se reunió en casa de una compañera (Stephanie) el día domingo y procedimos a continuar trabajando en el proyecto.
 
 ### Fotos referenciales:
 
