@@ -283,6 +283,7 @@ function drawStudentSatisfation(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
+
 function drawTeacherRating(s1, s2, s3, s4) { 
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
