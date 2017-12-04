@@ -56,9 +56,17 @@ _Adicional:_
 
 ## Plan de acción:
 
+* Antes de construir nuestro programa, hicimos un flujograma.
+
+![Flujograma](assets/images/flugrama.png)
+
 * Como motivo de ayuda, realizamos un sketch con los puntos que nos pedían realizar, para así aclarar nuestras dudas.
 
 ![Sketching](assets/images/img.jpg)
+
+* Además realizamos un mockup de nuestro sketching. 
+
+[Dashboard-Marvel](https://marvelapp.com/5a5b65b/screen/35762645/handoff).
 
 ***
 
