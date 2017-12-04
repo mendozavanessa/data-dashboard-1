@@ -50,13 +50,25 @@ body {
     float: right;
 }
 
-.input-group {
+.list-page {
+  display: inline-block;
+}
 
+.list-page ul {
+position: absolute;
+left: 20%;
+top: 30px;
+text-transform: uppercase;
+}
+.list-page ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 0 0 20px;
 }
 
 .nav-search {
     position: absolute;
-    left: 34%;
+    left: 55%;
     top: 44px;
 }
 
