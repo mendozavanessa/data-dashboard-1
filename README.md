@@ -4,7 +4,7 @@
 * **Curso:** _Creando un sitio web interactivo con javascript._
 * **Unidad:** _Data Dashboard._
 * **Squad:** _Ayllu Coders._
-* **Integrantes:** _Aurora Vásquez_ - _Stephanie Wong_ - _Alexandra Calderón_- _Claudia Gariboto_ - _Vanessa Mendoza_ - _Lidia Ramirez_ - _Yosseline Apcho_ - _Katherine Chuquillanqui_.
+* **Integrantes:** _Aurora Vásquez_ - _Stephanie Wong_ - _Alexandra Calderón_- _Claudia Gariboto_ - _Vanessa Mendoza_ - _Lidia Ramirez_ - _Yosseline Apcho_.
 
 ***
 
@@ -78,7 +78,7 @@ _Adicional:_
 
 ### Día 2
 
-* Un grupo de compañeras (Lidia, Claudia y Katherine) se reunió el día sábado para dar comienzo al perfeccionamiento del código.
+* Un grupo de compañeras (Lidia, Claudia) se reunió el día sábado para dar comienzo al perfeccionamiento del código.
 
 
 ### Día 3

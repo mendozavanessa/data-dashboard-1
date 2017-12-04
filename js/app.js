@@ -21,6 +21,8 @@ window.addEventListener('load', function() {
     prctTechSprint = document.getElementById('prctTechSprint'),
     totalHseSprint = document.getElementById('totalHseSprint'),
     prctHseSprint = document.getElementById('prctHseSprint');
+    sedePromo('LIM', '2017-2');
+    sprintFunction('LIM', '2017-2');
   filtro.addEventListener('change', function(event) {
     switch (event.target.value) {
     case '0': sedePromo('LIM', '2016-2');
@@ -44,198 +46,198 @@ window.addEventListener('load', function() {
     case '9':sedePromo('CDMX', '2017-2');
       break;
     }
-    // funcion que llamara cada caso que pertenezca la opcion clikeada como parametros pasamos la sede y la promocion datos que estan en la data.js
-    function sedePromo(sede, promo) {
-      sprintFunction(sede, promo);
-      // respondiendo primera pregunta. Hallando la cantidad de alumnas y el porcentaje recorriendo un array se puede contar cuantas alumnas hay
-      var arr = data[sede][promo]['students'];
-      var current = 0;
-      var nocant = 0;
-      for (var i = 0; i < arr.length; i++) {
-        if (arr[i].active === true) {
-          current++;
-        } else {
-          nocant++;
-        }
-      }
-      var deserted = parseInt((nocant / arr.length) * 100);
-      total.textContent = current;
-      porcentaje.textContent = deserted + '%';
-      drawTotalStudents(current, deserted);
-      /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
-      var SumScoreSprintHse = 0;
-      var SumScoreSprintTech = 0;
-      var stuContar = 0;
-      for (var i = 0; i < data[sede][promo].students.length ; i++) {
-        var studentsTotal = data[sede][promo].students.length;
-        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
-          var indicatorHse = 840 * (data[sede][promo].students[i].sprints.length);
-          var indicatorTech = 1260 * (data[sede][promo].students[i].sprints.length);
-          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
-          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
-          SumScoreSprintHse += stuScoreHse;
-          SumScoreSprintTech += stuScoreTech;
-        } if (SumScoreSprintHse >= indicatorHse && SumScoreSprintTech >= indicatorTech) {
-          stuContar += 1;
-        }
-        SumScoreSprintHse = 0;
-        SumScoreSprintTech = 0;
-      }
-      var prctStucontar = ((stuContar / studentsTotal) * 100).toFixed(2);
-      meta.innerHTML = stuContar;
-      prctmeta.textContent = prctStucontar + '%';
-
-      /* ***************************************************************cantida de nps*********************************************************************/
-      var totalNpsSprint = 0;
-      var sprintArray = [0, 0, 0, 0];
-      var arrayNPS = [];
-      var sprintRaitings = data[sede][promo].ratings.length;
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var raitingspNpsromoters = data[sede][promo].ratings[i].nps.promoters;
-        var raitingspNpsDetractors = data[sede][promo].ratings[i].nps.detractors;
-        var NpsSprint = raitingspNpsromoters - raitingspNpsDetractors;
-        arrayNPS[i] = NpsSprint;
-        totalNpsSprint += NpsSprint;
-      }
-      var prctTotalNpsSprint = (totalNpsSprint / sprintRaitings).toFixed(2);
-      nps.textContent = prctTotalNpsSprint + '%';
-      // para los porcentajes promoters - pasive y detractors
-      // Promoters
-      var totalPromoters = 0;
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var raitingspNpsromoters = data[sede][promo].ratings[i].nps.promoters;
-        totalPromoters += raitingspNpsromoters;
-      }
-      var npsTotalPromoters = (totalPromoters / sprintRaitings).toFixed(2);
-      // Pasive
-      var totalPasive = 0;
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var raitingspNpsromoters = data[sede][promo].ratings[i].nps.passive;
-        totalPasive += raitingspNpsromoters;
-      }
-      npsTotalPasive = (totalPasive / sprintRaitings).toFixed(2);
-      // Detractors
-      var totalDetractors = 0;
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var raitingspNpsromoters = data[sede][promo].ratings[i].nps.detractors;
-        totalDetractors += raitingspNpsromoters;
-      }
-      var npsTotalDetractors = (totalDetractors / sprintRaitings).toFixed(2);
-
-      npsPorciento.innerHTML = npsTotalPromoters + '% Promoters' + '<br>' + npsTotalPasive + '% Passive' + '<br>' + npsTotalDetractors + '% Detractors';
-      for (var i = 0; i < data[sede][promo].ratings.length; i++) {
-        sprintArray[i] = arrayNPS[i];
-      }
-      drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-      /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
-      var pctjStudentsSat = 0;
-      var arrayMeet = [];
-      sprintArray = [0, 0, 0, 0];
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var studentsCumple = data[sede][promo].ratings[i].student.cumple;
-        var studentsSupera = data[sede][promo].ratings[i].student.supera;
-        var studentSat = studentsCumple + studentsSupera;
-        pctjStudentsSat += studentSat;
-        arrayMeet[i] = data[sede][promo].ratings[i].student.cumple;
-      }
-      var totalSatisfation = (pctjStudentsSat / sprintRaitings).toFixed(2);
-      boxExpectativa.textContent = totalSatisfation + '%';
-      for (var i = 0; i < data[sede][promo].ratings.length; i++) {
-        sprintArray[i] = arrayMeet[i];
-      }
-      drawStudentSatisfation(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-      /* *********************************************promedio de los profesores********************************************************************/
-      var ptPromTeacher = 0;
-      sprintArray = [0, 0, 0, 0];
-      var arrayteacherRating = [];
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var ptTeacher = data[sede][promo].ratings[i].teacher;
-        ptPromTeacher += ptTeacher;
-        arrayteacherRating[i] = data[sede][promo].ratings[i].teacher;
-      }
-      var scoreTeacher = (ptPromTeacher / sprintRaitings).toFixed(2);
-      boxTeacher.textContent = scoreTeacher;
-
-      for (var i = 0; i < data[sede][promo].ratings.length; i++) {
-        sprintArray[i] = arrayteacherRating[i];
-      }
-      drawTeacherRating(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-
-      /* *************************************************promedio jedi*****************************************************************/
-      var ptPromJedis = 0;
-      sprintArray = [0, 0, 0, 0];
-      var arrayJedi = [];
-      for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
-        var ptJedis = data[sede][promo].ratings[i].jedi;
-        ptPromJedis += ptJedis;
-        arrayJedi[i] = data[sede][promo].ratings[i].jedi;
-      }
-      var ptJedistotal = (ptPromJedis / sprintRaitings).toFixed(2);
-      boxJedi.textContent = ptJedistotal;
-
-      for (var i = 0; i < data[sede][promo].ratings.length; i++) {
-        sprintArray[i] = arrayJedi[i];
-      }
-
-      drawJediRatings(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
+  });
+  // funcion que llamara cada caso que pertenezca la opcion clikeada como parametros pasamos la sede y la promocion datos que estan en la data.js
+function sedePromo(sede, promo) {
+  sprintFunction(sede, promo);
+  // respondiendo primera pregunta. Hallando la cantidad de alumnas y el porcentaje recorriendo un array se puede contar cuantas alumnas hay
+  var arr = data[sede][promo]['students'];
+  var current = 0;
+  var nocant = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].active === true) {
+      current++;
+    } else {
+      nocant++;
     }
-  });
-  function sprintFunction(sede, promo) {
-    sprintFiltroTech.addEventListener('change', function(event) {
-      var nsprint = parseInt(event.target.value) + 1;
-      var arraySprintTech = [0, 0, 0, 0];
-
-      for (var i = 0; i < data[sede][promo].students.length ; i++) {
-        var totalStudents = data[sede][promo].students.length;
-        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
-          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
-          var sprintNumber = data[sede][promo].students[i].sprints[j].number;
-          if (sprintNumber === nsprint && stuScoreTech >= 1260) {
-            arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;
-          }
-        }
-      }
-      var porcentajeTech = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100);
-      totalTechSprint.textContent = arraySprintTech[nsprint - 1];
-      prctTechSprint.textContent = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
-
-      drawSkillTech(porcentajeTech, (100 - porcentajeTech));
-    });
-    sprintFiltroHse.addEventListener('change', function(event) {
-      var nsprint = parseInt(event.target.value) + 1;
-      var arraySprintHse = [0, 0, 0, 0];
-      for (var i = 0; i < data[sede][promo].students.length ; i++) {
-        var totalStudents = data[sede][promo].students.length;
-        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
-          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
-          var sprintNumber = data[sede][promo].students[i].sprints[j].number;
-          if (sprintNumber === nsprint && stuScoreHse >= 840) {
-            arraySprintHse[nsprint - 1] = arraySprintHse[nsprint - 1] + 1;
-          }
-        }
-      }
-      var porcentajeHSE = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100);
-      totalHseSprint.textContent = arraySprintHse[nsprint - 1];
-      prctHseSprint.textContent = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
-      drawSkillHSE(porcentajeHSE, (100 - porcentajeHSE));
-    });
   }
-  /* evento click para la navegacion facetada de students para que muestre cuando se haga click y se borre la vista de overview*/
-  students.addEventListener('click', function() {
-    paginaView.classList.remove('enabled');
-    paginaView.classList.add('disabled');
-    paginaStudents.classList.remove('disabled');
-    paginaStudents.classList.add('enabled');
-  });
-  /* evento click para la navegacion facetada overview para que se muestre******************************************/
-  view.addEventListener('click', function() {
-    paginaView.classList.remove('disabled');
-    paginaView.classList.add('enabled');
-    paginaStudents.classList.remove('enabled');
-    paginaStudents.classList.add('disabled');
-  });
-});
+  var deserted = parseInt((nocant / arr.length) * 100);
+  total.textContent = current;
+  porcentaje.textContent = deserted + '%';
+  drawTotalStudents(current, deserted);
+  /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
+  var SumScoreSprintHse = 0;
+  var SumScoreSprintTech = 0;
+  var stuContar = 0;
+  for (var i = 0; i < data[sede][promo].students.length ; i++) {
+    var studentsTotal = data[sede][promo].students.length;
+    for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+      var indicatorHse = 840 * (data[sede][promo].students[i].sprints.length);
+      var indicatorTech = 1260 * (data[sede][promo].students[i].sprints.length);
+      var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
+      var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
+      SumScoreSprintHse += stuScoreHse;
+      SumScoreSprintTech += stuScoreTech;
+    } if (SumScoreSprintHse >= indicatorHse && SumScoreSprintTech >= indicatorTech) {
+      stuContar += 1;
+    }
+    SumScoreSprintHse = 0;
+    SumScoreSprintTech = 0;
+  }
+  var prctStucontar = ((stuContar / studentsTotal) * 100).toFixed(2);
+  meta.innerHTML = stuContar;
+  prctmeta.textContent = prctStucontar + '%';
+  var sp = parseInt(prctStucontar);
+  var nsp = 100 - prctStucontar;
+  drawAchievement(sp, nsp);
+  /* ***************************************************************cantida de nps*********************************************************************/
+  var totalNpsSprint = 0;
+  var sprintArray = [0, 0, 0, 0];
+  var arrayNPS = [];
+  var sprintRaitings = data[sede][promo].ratings.length;
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var raitingspNpsromoters = data[sede][promo].ratings[i].nps.promoters;
+    var raitingspNpsDetractors = data[sede][promo].ratings[i].nps.detractors;
+    var NpsSprint = raitingspNpsromoters - raitingspNpsDetractors;
+    arrayNPS[i] = NpsSprint;
+    totalNpsSprint += NpsSprint;
+  }
+  var prctTotalNpsSprint = (totalNpsSprint / sprintRaitings).toFixed(2);
+  nps.textContent = prctTotalNpsSprint + '%';
+  // para los porcentajes promoters - pasive y detractors
+  // Promoters
+  var totalPromoters = 0;
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var raitingspNpsromoters = data[sede][promo].ratings[i].nps.promoters;
+    totalPromoters += raitingspNpsromoters;
+  }
+  var npsTotalPromoters = (totalPromoters / sprintRaitings).toFixed(2);
+  // Pasive
+  var totalPasive = 0;
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var raitingspNpsromoters = data[sede][promo].ratings[i].nps.passive;
+    totalPasive += raitingspNpsromoters;
+  }
+  npsTotalPasive = (totalPasive / sprintRaitings).toFixed(2);
+  // Detractors
+  var totalDetractors = 0;
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var raitingspNpsromoters = data[sede][promo].ratings[i].nps.detractors;
+    totalDetractors += raitingspNpsromoters;
+  }
+  var npsTotalDetractors = (totalDetractors / sprintRaitings).toFixed(2);
 
+  npsPorciento.innerHTML = npsTotalPromoters + '% Promoters' + '<br>' + npsTotalPasive + '% Passive' + '<br>' + npsTotalDetractors + '% Detractors';
+  for (var i = 0; i < data[sede][promo].ratings.length; i++) {
+    sprintArray[i] = arrayNPS[i];
+  }
+  drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
+  /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
+  var pctjStudentsSat = 0;
+  var arrayMeet = [];
+  sprintArray = [0, 0, 0, 0];
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var studentsCumple = data[sede][promo].ratings[i].student.cumple;
+    var studentsSupera = data[sede][promo].ratings[i].student.supera;
+    var studentSat = studentsCumple + studentsSupera;
+    pctjStudentsSat += studentSat;
+    arrayMeet[i] = data[sede][promo].ratings[i].student.cumple;
+  }
+  var totalSatisfation = (pctjStudentsSat / sprintRaitings).toFixed(2);
+  boxExpectativa.textContent = totalSatisfation + '%';
+  for (var i = 0; i < data[sede][promo].ratings.length; i++) {
+    sprintArray[i] = arrayMeet[i];
+  }
+  drawStudentSatisfation(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
+  /* *********************************************promedio de los profesores********************************************************************/
+  var ptPromTeacher = 0;
+  sprintArray = [0, 0, 0, 0];
+  var arrayteacherRating = [];
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var ptTeacher = data[sede][promo].ratings[i].teacher;
+    ptPromTeacher += ptTeacher;
+    arrayteacherRating[i] = data[sede][promo].ratings[i].teacher;
+  }
+  var scoreTeacher = (ptPromTeacher / sprintRaitings).toFixed(2);
+  boxTeacher.textContent = scoreTeacher;
+
+  for (var i = 0; i < data[sede][promo].ratings.length; i++) {
+    sprintArray[i] = arrayteacherRating[i];
+  }
+  drawTeacherRating(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
+
+  /* *************************************************promedio jedi*****************************************************************/
+  var ptPromJedis = 0;
+  sprintArray = [0, 0, 0, 0];
+  var arrayJedi = [];
+  for (var i = 0; i < data[sede][promo].ratings.length ; i++) {
+    var ptJedis = data[sede][promo].ratings[i].jedi;
+    ptPromJedis += ptJedis;
+    arrayJedi[i] = data[sede][promo].ratings[i].jedi;
+  }
+  var ptJedistotal = (ptPromJedis / sprintRaitings).toFixed(2);
+  boxJedi.textContent = ptJedistotal;
+
+  for (var i = 0; i < data[sede][promo].ratings.length; i++) {
+    sprintArray[i] = arrayJedi[i];
+  }
+
+  drawJediRatings(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
+}
+function sprintFunction(sede, promo) {
+  sprintFiltroTech.addEventListener('change', function(event) {
+    var nsprint = parseInt(event.target.value) + 1;
+    var arraySprintTech = [0, 0, 0, 0];
+
+    for (var i = 0; i < data[sede][promo].students.length ; i++) {
+      var totalStudents = data[sede][promo].students.length;
+      for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+        var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
+        var sprintNumber = data[sede][promo].students[i].sprints[j].number;
+        if (sprintNumber === nsprint && stuScoreTech >= 1260) {
+          arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;
+        }
+      }
+    }
+    var porcentajeTech = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100);
+    totalTechSprint.textContent = arraySprintTech[nsprint - 1];
+    prctTechSprint.textContent = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
+
+    drawSkillTech(porcentajeTech, (100 - porcentajeTech));
+  });
+  sprintFiltroHse.addEventListener('change', function(event) {
+    var nsprint = parseInt(event.target.value) + 1;
+    var arraySprintHse = [0, 0, 0, 0];
+    for (var i = 0; i < data[sede][promo].students.length ; i++) {
+      var totalStudents = data[sede][promo].students.length;
+      for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+        var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
+        var sprintNumber = data[sede][promo].students[i].sprints[j].number;
+        if (sprintNumber === nsprint && stuScoreHse >= 840) {
+          arraySprintHse[nsprint - 1] = arraySprintHse[nsprint - 1] + 1;
+        }
+      }
+    }
+    var porcentajeHSE = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100);
+    totalHseSprint.textContent = arraySprintHse[nsprint - 1];
+    prctHseSprint.textContent = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
+    drawSkillHSE(porcentajeHSE, (100 - porcentajeHSE));
+  });
+}
+/* evento click para la navegacion facetada de students para que muestre cuando se haga click y se borre la vista de overview*/
+students.addEventListener('click', function() {
+  paginaView.classList.remove('enabled');
+  paginaView.classList.add('disabled');
+  paginaStudents.classList.remove('disabled');
+  paginaStudents.classList.add('enabled');
+});
+/* evento click para la navegacion facetada overview para que se muestre******************************************/
+view.addEventListener('click', function() {
+  paginaView.classList.remove('disabled');
+  paginaView.classList.add('enabled');
+  paginaStudents.classList.remove('enabled');
+  paginaStudents.classList.add('disabled');
+});
 /* ******GRAFICOS */
 function drawTotalStudents(current, deserted) {
   google.charts.load('current', {'packages': ['corechart']});
@@ -256,6 +258,26 @@ function drawTotalStudents(current, deserted) {
     chart.draw(dataTest, options);
   }
 }
+
+function drawAchievement(sp, nsp) {
+  google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Superan', sp],
+            ['No superan', nsp]
+          ]);  
+          var options = {          
+            pieHole: 0.3,
+            'colors': ['#3366cc', '#990099']
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+          chart.draw(data, options);
+        }
+  }
+
 function drawNetPromoter(s1, s2, s3, s4) {
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
@@ -265,7 +287,7 @@ function drawNetPromoter(s1, s2, s3, s4) {
       ['S1', s1, 'gold'],
       ['S2', s2, '#ea7430'],
       ['S3', s3, '#1b9e77'],
-      ['S4', s4, '#4285f4']
+      ['S4', s4, '#4285f4']  
     ]);
 
     var view = new google.visualization.DataView(data);
@@ -298,7 +320,7 @@ function drawSkillTech(current, deserted) {
       ['Desaprobaron', deserted],
     ]);
     var options = {
-      'colors': ['#9B2534', '#379C63'],
+      'colors': ['#ea7430', '#4285f4'],
       'width': 320,
       'height': 150 };
     var chart = new google.visualization.PieChart(document.getElementById('chart_div_techs'));
@@ -318,7 +340,7 @@ function drawSkillHSE(current, deserted) {
       ['Desaprobaron', deserted],
     ]);
     var options = {
-      'colors': ['#9B2534', '#379C63'],
+      'colors': ['#ea7430', '#4285f4'],
       'width': 320,
       'height': 150 };
     var chart = new google.visualization.PieChart(document.getElementById('chart_div_hse'));
@@ -415,6 +437,10 @@ function drawJediRatings(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
+});
+
+
+
 // EVENTO PARA LA SECCION STUDENTS
 window.addEventListener('load', function() {
   
