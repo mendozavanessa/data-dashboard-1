@@ -63,23 +63,27 @@ window.addEventListener('load', function() {
       porcentaje.textContent = deserted + '%';
       drawTotalStudents(current, deserted);
       /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
-      var sumaScore = 0;
-      for (var i = 0; i < arr.length; i++) {
-        var sumaHse = 0;
-        var sumaTech = 0;
-        for (var j = 0; j < data[sede][promo]['students'][i]['sprints'].length; j++) {
-          var tech = data[sede][promo]['students'][i]['sprints'][j]['score']['tech'];
-          var hse = data[sede][promo]['students'][i]['sprints'][j]['score']['hse'];
-          sumaHse = sumaHse + hse;
-          sumaTech = sumaTech + tech;
+      var SumScoreSprintHse = 0;
+      var SumScoreSprintTech = 0;
+      var stuContar = 0;
+      for (var i = 0; i < data[sede][promo].students.length ; i++) {
+        var studentsTotal = data[sede][promo].students.length;
+        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+          var indicatorHse = 840 * (data[sede][promo].students[i].sprints.length);
+          var indicatorTech = 1260 * (data[sede][promo].students[i].sprints.length);
+          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
+          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
+          SumScoreSprintHse += stuScoreHse;
+          SumScoreSprintTech += stuScoreTech;
+        } if (SumScoreSprintHse >= indicatorHse && SumScoreSprintTech >= indicatorTech) {
+          stuContar += 1;
         }
-        if (sumaHse > 3360 && sumaTech > 5040) {
-          sumaScore++;
-        }
+        SumScoreSprintHse = 0;
+        SumScoreSprintTech = 0;
       }
-      meta.innerHTML = sumaScore;
-      var prctsumaScore = ((sumaScore / arr.length) * 100).toFixed(2);
-      prctmeta.textContent = prctsumaScore + '%';
+      var prctStucontar = ((stuContar / studentsTotal) * 100).toFixed(2);
+      meta.innerHTML = stuContar;
+      prctmeta.textContent = prctStucontar + '%';
 
       /* ***************************************************************cantida de nps*********************************************************************/
       var totalNpsSprint = 0;
