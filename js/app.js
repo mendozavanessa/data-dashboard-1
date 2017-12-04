@@ -18,7 +18,9 @@ window.addEventListener('load', function() {
     pointTech = document.getElementById('tech'),
     pointHse = document.getElementById('hse'),
     totalTechSprint = document.getElementById('totalTechSprint'),
-    prctTechSprint = document.getElementById('prctTechSprint');
+    prctTechSprint = document.getElementById('prctTechSprint'),
+    totalHseSprint = document.getElementById('totalHseSprint'),
+    prctHseSprint = document.getElementById('prctHseSprint');
   filtro.addEventListener('change', function(event) {
     switch (event.target.value) {
     case '0': sedePromo('LIM', '2016-2');
@@ -61,27 +63,23 @@ window.addEventListener('load', function() {
       porcentaje.textContent = deserted + '%';
       drawTotalStudents(current, deserted);
       /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
-      var SumScoreSprintHse = 0;
-      var SumScoreSprintTech = 0;
-      var stuContar = 0;
-      for (var i = 0; i < data[sede][promo].students.length ; i++) {
-        var studentsTotal = data[sede][promo].students.length;
-        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
-          var indicatorHse = 840 * (data[sede][promo].students[i].sprints.length);
-          var indicatorTech = 1260 * (data[sede][promo].students[i].sprints.length);
-          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
-          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
-          SumScoreSprintHse += stuScoreHse;
-          SumScoreSprintTech += stuScoreTech;
-        } if (SumScoreSprintHse >= indicatorHse && SumScoreSprintTech >= indicatorTech) {
-          stuContar += 1;
+      var sumaScore = 0;
+      for (var i = 0; i < arr.length; i++) {
+        var sumaHse = 0;
+        var sumaTech = 0;
+        for (var j = 0; j < data[sede][promo]['students'][i]['sprints'].length; j++) {
+          var tech = data[sede][promo]['students'][i]['sprints'][j]['score']['tech'];
+          var hse = data[sede][promo]['students'][i]['sprints'][j]['score']['hse'];
+          sumaHse = sumaHse + hse;
+          sumaTech = sumaTech + tech;
         }
-        SumScoreSprintHse = 0;
-        SumScoreSprintTech = 0;
+        if (sumaHse > 3360 && sumaTech > 5040) {
+          sumaScore++;
+        }
       }
-      var prctStucontar = ((stuContar / studentsTotal) * 100).toFixed(2);
-      meta.innerHTML = stuContar;
-      prctmeta.textContent = prctStucontar + '%';
+      meta.innerHTML = sumaScore;
+      var prctsumaScore = ((sumaScore / arr.length) * 100).toFixed(2);
+      prctmeta.textContent = prctsumaScore + '%';
 
       /* ***************************************************************cantida de nps*********************************************************************/
       var totalNpsSprint = 0;
@@ -125,7 +123,10 @@ window.addEventListener('load', function() {
         sprintArray[i] = arrayNPS[i];
       }
       drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-     
+      /* *********************************************calculando los puntos obtenidos en tech********************************************************************/
+      
+      /* ********************************************************calculando los puntos en hse*******************************************************************/
+      
       /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
       var pctjStudentsSat = 0;
       var arrayMeet = [];
@@ -189,22 +190,41 @@ window.addEventListener('load', function() {
         for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
           var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
           var sprintNumber = data[sede][promo].students[i].sprints[j].number;
-          if (sprintNumber == nsprint && stuScoreTech >= 1260) {
+          if (sprintNumber === nsprint && stuScoreTech >= 1260) {
             arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;              
           }
         }
+    }
+      var porcentajeTech = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100);
+      totalTechSprint.textContent = arraySprintTech[nsprint - 1];
+      prctTechSprint.textContent = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
+
+      drawSkillTech(porcentajeTech, (100-porcentajeTech));
+    });
+    sprintFiltroHse.addEventListener('change', function(event) {
+      var nsprint = parseInt(event.target.value) + 1;
+      var arraySprintHse = [0, 0, 0, 0];
+      for (var i = 0; i < data[sede][promo].students.length ; i++) {
+        var totalStudents = data[sede][promo].students.length;
+        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
+          var sprintNumber = data[sede][promo].students[i].sprints[j].number;
+          if (sprintNumber === nsprint && stuScoreHse >= 840) {
+            arraySprintHse[nsprint - 1] = arraySprintHse[nsprint - 1] + 1;              
+          }
+        }
       }
-       totalTechSprint.textContent = arraySprintTech[nsprint - 1];
-       prctTechSprint.textContent  = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
-     /* alert(arraySprintTech[nsprint - 1]);
-      alert((((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2));*/
+      var porcentajeHSE = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100);
+      totalHseSprint.textContent = arraySprintHse[nsprint - 1];
+      prctHseSprint.textContent = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
+      drawSkillHSE(porcentajeHSE, (100-porcentajeHSE));
     });
   }
 });
 
-/** *****GRAFICOS */
+/*******GRAFICOS */
 function drawTotalStudents(current, deserted) {
-  google.charts.load('current', {'packages': ['corechart']});
+  google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var dataTest = new google.visualization.DataTable();
@@ -252,7 +272,45 @@ function drawNetPromoter(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
+function drawSkillTech(current, deserted) {
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var dataTest = new google.visualization.DataTable();
+    dataTest.addColumn('string', 'Topping');
+    dataTest.addColumn('number', 'Slices');
+    dataTest.addRows([
+      ['Aprobaron', current],
+      ['Desaprobaron', deserted],
+    ]);
+    var options = {
+      'colors': ['#9B2534', '#379C63'],
+      'width': 320,
+      'height': 150 };
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div_techs'));
+    chart.draw(dataTest, options);
+  }
+}
 
+function drawSkillHSE(current, deserted) {
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var dataTest = new google.visualization.DataTable();
+    dataTest.addColumn('string', 'Topping');
+    dataTest.addColumn('number', 'Slices');
+    dataTest.addRows([
+      ['Aprobaron', current],
+      ['Desaprobaron', deserted],
+    ]);
+    var options = {
+      'colors': ['#9B2534', '#379C63'],
+      'width': 320,
+      'height': 150 };
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div_hse'));
+    chart.draw(dataTest, options);
+  }
+}
 function drawStudentSatisfation(s1, s2, s3, s4) { 
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
@@ -283,7 +341,6 @@ function drawStudentSatisfation(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
-
 function drawTeacherRating(s1, s2, s3, s4) { 
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
@@ -314,7 +371,8 @@ function drawTeacherRating(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
-function drawJediRatings(s1, s2, s3, s4) {
+function drawJediRatings(s1, s2, s3, s4) { 
+  
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
