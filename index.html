@@ -14,7 +14,6 @@
     <header class="main-header">
         <!--Logo-->
         <img src="assets/images/logo_laboratoria.png" alt="Logo" width=230>
-
         <!--Search-->
         <div class="nav-search">
             <form action="#" method="get" class="sidebar-form">
@@ -59,51 +58,6 @@
                 </div>
             </div>
             <hr>
-            <!--Sidebar (Barra Lateral) Menu-->
-            <ul class="sidebar-menu">
-                <li class="headquarters-dashboard">
-                    <a href="#">
-                        <span class="icon-th-large"></span>
-                        <h4 class="tex-dash">Dashboard</h4>
-                        <span class="pull-container"></span>
-                    </a>
-                    <ul class="headquarters">
-                        <li id="lima" class="headquarters-lima">
-                            <a href="#">
-                                <span class="icon-caret-right"></span>Lima
-                            </a>
-                        </li>
-                        <li id="arequipa" class="headquarters-arequipa">
-                            <a href="#">
-                                <span class="icon-caret-right"></span>Arequipa
-                            </a>
-                        </li>
-                        <li id="mexico" class="headquarters-mexico">
-                            <a href="#">
-                                <span class="icon-caret-right"></span>Ciudad de México
-                            </a>
-                        </li>
-                        <li id="santiago" class="headquarters-santiago">
-                            <a href="#">
-                                <span class="icon-caret-right"></span>Santiago de Chile
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="comparativo">
-                    <a href="#">
-                        <span class="icon-edit"></span>
-                        <h4>Comparativo</h4>
-                    </a>
-                </li>
-                <li class="setting">
-                    <a href="#">
-                        <span class="icon-cog"></span>
-                        <h4>Dashboard</h4>
-                    </a>
-                </li>
-            </ul>
-
         </section>
     </aside>
     <!--Contenido de la Página-->
@@ -132,160 +86,88 @@
                   <option value="9"><span>Mexico</span> 2017-2</option>
                 </optgroup>
             </select>
-
-            <!--Main Content-->
-            <section class="content"></section>
-            <div class="container-sprint">
-                <span>Sprint</span>
-            </div>
-            <select id="sprint">
-                <option id="sprint1" class="combo">1</option>
-                <option id="sprint2" class="combo">2</option>
-                <option id="sprint3" class="combo">3</option>
-                <option id="sprint4" class="combo">4</option>
-            </select>
         </section>
 
         <section>
-            <div class="box-data-students">
-                <div id="total"></div>
-                <div id="porcentaje"></div>
-            </div>
-            <div style="padding: 80px" id="chart_div_enrollment"></div>
-            <div class="box-data-students">
-                <div id="meta"></div>
-                <div id="prctmeta"></div>
-            </div>
-            <div class="box-data-students">
-                <div id="nps"></div>
-                <div id="nps-porciento"></div>
-            </div>
-            <div style="padding: 80px" id="chart_div_nps"></div>            
-            <div class="box-graphics">
-                <select name="sprintFiltro" id="sprintFiltroTech">
+            <div class="container">
+              <div class="box-data-students">
+                <h1>enrollment</h1>
+                  <div class="number-box"><span id="total"></span># students currently enrolled</div>
+                  <div class="number-box"> <span id="porcentaje"></span>%dropout</div>
+                  <div class="box-google-charts">
+                    <div id="chart_div_enrollment"></div>
+                  </div>
+              </div>
+              <div class="box-data-students">
+                <h1>achievement</h1>
+                  <div class="number-box"> <span id="meta"></span>#students that meet the target</div>
+                  <div class="number-box"> <span id="prctmeta"></span>% of total</div>
+                  <div class="box-google-charts"></div>
+              </div>
+              <div class="box-data-students">
+                <h1>net promoter score</h1>
+                  <div class="number-box"> <span id="nps"></span>%cumulative nps</div>
+                  <div class="number-box" id="porcentajes"> <span id="nps-porciento">porcentajes</span></div>
+                  <div class="box-google-charts">
+                    <div id="chart_div_nps"></div>
+                  </div>
+              </div>
+          <!--Grafico del medio-->
+              <div class="box-graphics">
+                <div class="sprintfiltro">
+                  <select name="sprintFiltro" id="sprintFiltroTech">
+                      <option value="0">Sprint 1</option>
+                      <option value="1">Sprint 2</option>
+                      <option value="2">Sprint 3</option>
+                      <option value="3">Sprint 4</option>
+                  </select>
+                </div>
+                  <div class="data-number-list"> <span id="totalTechSprint"></span># students that meet the target</div>
+                  <div class="data-number-list"> <span id="prctTechSprint"></span>% of total</div>
+                  <div class="caja2">
+                    <div id="chart_div_techs" style="width: 100%; height: 200px;"></div>
+                  </div>
+              </div>
+              <div class="box-graphics">
+                <div>
+                  <select name="sprintFiltroHse" id="sprintFiltroHse">
                     <option value="0">Sprint 1</option>
                     <option value="1">Sprint 2</option>
                     <option value="2">Sprint 3</option>
                     <option value="3">Sprint 4</option>
-                </select>
-                <div id="totalTechSprint"></div>
-                <div id="prctTechSprint"></div>
-            </div>
-            <div id="chart_div_techs" style="width: 100%; height: 500px;"></div>
-            <div class="box-graphics">
-                    <select name="sprintFiltroHse" id="sprintFiltroHse">
-                            <option value="0">Sprint 1</option>
-                            <option value="1">Sprint 2</option>
-                            <option value="2">Sprint 3</option>
-                            <option value="3">Sprint 4</option>
-                    </select>
-                <div id="totalHseSprint"></div>
-                <div id="prctHseSprint"></div>
-            </div>
-            <div id="chart_div_hse" style="width: 100%; height: 500px;"></div>
-            <div class="box-data-students">
-                <div id="box-expectativa"></div>
-                <div></div>
-            </div>
-            <div style="padding: 80px" id="columnchart_student_satisfation"></div>
-            <div class="box-data-students">
-                <div id="box-teacher"></div>
-                <div></div>
-            </div>
-            <div style="padding: 80px" id="columnchart_teacher_rating"></div>
-            <div class="box-data-students">
-                <div id="box-jedi"></div>
-                <div></div>
-            </div>
-            <div style="padding: 80px" id="columnchart_jedi_rating"></div>        
-        </section>
-
-        <!--Cajas-->
-        <!-- <div class="container-box">
-            <div class="box-total">
-                <h3 id="total-students">0</h3>
-                <p>Total Alumnas</p>
-            </div>
-            <div class="box-desertaron">
-                <h3 id="total-desertaron">0</h3>
-                <p>Deserción</p>
-            </div>
-            <div class="box-proceso">
-                <h3 id="process">0</h3>
-                <p>En Proceso</p>
-            </div>
-            <!--Derecha-->
-            <!-- <div class="box-puntaje">
-                <h3 id="promedio">80%</h3>
-                <p>Puntaje Promedio</p>
-            </div>
-            <div class="box-media">
-                <h3 id="media-alcanzada">108</h3>
-                <p>Media alcanzada</p>
-            </div>
-            <div class="box-nomedia">
-                <h3 id="media-no-alcanzada">18</h3>
-                <p>Media no alcanzada</p>
-            </div> -->
-        <!-- </div> -->
-
-        <!-- Sub-menu -->
-        <!-- <nav class="reponav">
-            <div class="tab">
-                <a href="#" class="tab-links">Grafico</a>
-                <a href="#" class="tab-links">Alumnas</a>
-            </div>
-        </nav> -->
-
-        <!-- Graficos -->
-
-        <!-- <section class="content">
-            <div id="grafico" class="tab-content">
-                <div class="graphics-content">
-                    <canvas id="line-chart" style="height:200px;width: content-box;"></canvas>
-                    <canvas id="pie-chart" style="height:200px;width: content-box;"></canvas>
+                  </select>
                 </div>
-            </div>
-
-            <!-- Alumnas -->
-            <div id="alumnas" class="tab-content">
-                <div id="student-content">
-                    <div id="students" class="images-container" style="display: none">
-                        <img class="img-student" src="https://dummyimage.com/162x148.png/ff4444/ffffff"
-                             alt="Donna Sloper">
-
-                        <div class="basic-information">
-                            <h3 class="student-name">Donna Sloper</h3>
-                            <h5 class="subtittle">Frontend Developer</h5>
-                            <div class="knowledge">
-                                <div class="know"><h6>JavaScript</h6></div>
-                                <div class="know"><h6>APIs</h6></div>
-                                <div class="know"><h6>JQUERY</h6></div>
-                            </div>
-                        </div>
-
-
-                        <div class="skills">
-                            <div class="skills-container">
-                                <h4>96.3%</h4>
-                                <h6>TECH SKILLS</h6>
-                            </div>
-                            <div class="skills-container">
-                                <h4>96.3%</h4>
-                                <h6>LIFE SKILLS</h6>
-                            </div>
-                            <div class="skills-container">
-                                <h4>96.3%</h4>
-                                <h6>ENGLISH SKILLS</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <div class="data-number-list"> <span id="totalHseSprint"></span>#overall class average</div>
+                  <div class="data-number-list"> <span id="prctHseSprint"></span>% of students that meet the target</div>
+                  <div class="caja2">
+                    <div id="chart_div_hse" style="width: 100%; height: 500px;"></div>
+                  </div>
+              </div>
+              <div class="box-data-students">
+                <h1>Student satifaction</h1>
+                  <div class="number-box"> <span id="box-expectativa"></span>% meeting of excceding expectations</div>
+                  <div class="box-google-charts">
+                    <div id="columnchart_student_satisfation"></div>
+                  </div>
+              </div>
+              <div class="box-data-students">
+                <h1>teacher rating</h1>
+                  <div class="number-box"> <span id="box-teacher"></span>overall teacher rating</div>
+                  <div class="box-google-charts">
+                    <div id="columnchart_teacher_rating"></div>
+                  </div>
+              </div>
+              <div class="box-data-students">
+                <h1>jedi master rating</h1>
+                  <div class="number-box"> <span id="box-jedi"></span>overall jedi rating</div>
+                  <div class="box-google-charts">
+                    <div id="columnchart_jedi_rating"></div>
+                  </div>
+              </div>
             </div>
         </section>
     </div>
 </div>
-
 <!-- Aquí va tus archivos JS -->
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

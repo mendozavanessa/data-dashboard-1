@@ -90,7 +90,7 @@ window.addEventListener('load', function() {
         var raitingspNpsromoters = data[sede][promo].ratings[i].nps.promoters;
         var raitingspNpsDetractors = data[sede][promo].ratings[i].nps.detractors;
         var NpsSprint = raitingspNpsromoters - raitingspNpsDetractors;
-        arrayNPS[i] = NpsSprint; 
+        arrayNPS[i] = NpsSprint;
         totalNpsSprint += NpsSprint;
       }
       var prctTotalNpsSprint = (totalNpsSprint / sprintRaitings).toFixed(2);
@@ -124,9 +124,9 @@ window.addEventListener('load', function() {
       }
       drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
       /* *********************************************calculando los puntos obtenidos en tech********************************************************************/
-      
+
       /* ********************************************************calculando los puntos en hse*******************************************************************/
-      
+
       /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
       var pctjStudentsSat = 0;
       var arrayMeet = [];
@@ -176,7 +176,7 @@ window.addEventListener('load', function() {
       for (var i = 0; i < data[sede][promo].ratings.length; i++) {
         sprintArray[i] = arrayJedi[i];
       }
-    
+
       drawJediRatings(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
     }
   });
@@ -191,7 +191,7 @@ window.addEventListener('load', function() {
           var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
           var sprintNumber = data[sede][promo].students[i].sprints[j].number;
           if (sprintNumber === nsprint && stuScoreTech >= 1260) {
-            arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;              
+            arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;
           }
         }
     }
@@ -210,21 +210,21 @@ window.addEventListener('load', function() {
           var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
           var sprintNumber = data[sede][promo].students[i].sprints[j].number;
           if (sprintNumber === nsprint && stuScoreHse >= 840) {
-            arraySprintHse[nsprint - 1] = arraySprintHse[nsprint - 1] + 1;              
+            arraySprintHse[nsprint - 1] = arraySprintHse[nsprint - 1] + 1;
           }
         }
       }
       var porcentajeHSE = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100);
       totalHseSprint.textContent = arraySprintHse[nsprint - 1];
       prctHseSprint.textContent = (((arraySprintHse[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
-      drawSkillHSE(porcentajeHSE, (100-porcentajeHSE));
+      drawSkillHSE(porcentajeHSE, (100 - porcentajeHSE));
     });
   }
 });
 
-/*******GRAFICOS */
+/* ******GRAFICOS */
 function drawTotalStudents(current, deserted) {
-  google.charts.load('current', {'packages':['corechart']});
+  google.charts.load('current', {'packages': ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var dataTest = new google.visualization.DataTable();
@@ -236,7 +236,7 @@ function drawTotalStudents(current, deserted) {
     ]);
     var options = {
       'colors': ['#109618', '#dc3912'],
-      'width': 320,
+      'width': 300,
       'height': 150 };
     var chart = new google.visualization.PieChart(document.getElementById('chart_div_enrollment'));
     chart.draw(dataTest, options);
@@ -273,7 +273,7 @@ function drawNetPromoter(s1, s2, s3, s4) {
   }
 }
 function drawSkillTech(current, deserted) {
-  google.charts.load('current', {'packages':['corechart']});
+  google.charts.load('current', {'packages': ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var dataTest = new google.visualization.DataTable();
@@ -293,7 +293,7 @@ function drawSkillTech(current, deserted) {
 }
 
 function drawSkillHSE(current, deserted) {
-  google.charts.load('current', {'packages':['corechart']});
+  google.charts.load('current', {'packages': ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var dataTest = new google.visualization.DataTable();
@@ -311,7 +311,7 @@ function drawSkillHSE(current, deserted) {
     chart.draw(dataTest, options);
   }
 }
-function drawStudentSatisfation(s1, s2, s3, s4) { 
+function drawStudentSatisfation(s1, s2, s3, s4) {
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -341,7 +341,7 @@ function drawStudentSatisfation(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
-function drawTeacherRating(s1, s2, s3, s4) { 
+function drawTeacherRating(s1, s2, s3, s4) {
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -371,8 +371,7 @@ function drawTeacherRating(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
-function drawJediRatings(s1, s2, s3, s4) { 
-  
+function drawJediRatings(s1, s2, s3, s4) {
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
