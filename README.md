@@ -1,121 +1,85 @@
-# Data Dashboard
+# LABORATORIA - DATA DASHBOARD
 
-* **Track:** _Common Core_
-* **Curso:** _Creando tu primer sitio web interactivo_
-* **Unidad:** _Producto final_
+* **Track:** _Common Core._
+* **Curso:** _Creando un sitio web interactivo con javascript._
+* **Unidad:** _Data Dashboard._
+* **Squad:** _Ayllu Coders._
+* **Integrantes:** _Aurora Vásquez_ - _Stephanie Wong_ - _Alexandra Calderón_- _Claudia Gariboto_ - _Vanessa Mendoza_ - _Lidia Ramirez_ - _Yosseline Apcho_ - _Katherine Chuquillanqui_.
 
 ***
 
-## Flujo de trabajo
+## Objetivos del produto final:
 
-1. Debes realizar un [**fork**](https://gist.github.com/ivandevp/1de47ae69a5e139a6622d78c882e1f74)
-   de este repositorio.
+_Este producto final consistió en:_
 
-2. Luego deberás **clonar** tu fork en tu máquina. Recuerda que el comando a usar
-   es `git clone` y su estructura normalmente se ve así:
+**Crear una herramienta web, donde las TMs puedan ver los datos nombrados a continuación, de una manera fácil y rápida,  permitiendo así optimizar sus tiempos a la hora de  visualizar todos los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje. Dichos datos serían: **
 
-   ```bash
-   git clone https://github.com/<nombre-de-usuario>/freelancer.git
-   ```
+* El total de estudiantes presentes por sede y generación.
+* El porcentaje de deserción de estudiantes.
+* La cantidad de estudiantes que superan la meta de puntos en promedio de todos los sprints cursados. La meta de puntos es 70% del total de puntos en HSE y en tech.
+* El porcentaje que representa el dato anterior en relación al total de estudiantes.
+* El Net Promoter Score (NPS) promedio de los sprints cursados. El NPS se calcula en base a la encuesta que las estudiantes responden al respecto de la recomendación que darían de Laboratoria, bajo la siguiente fórmula:
 
-3. Cuando hayas terminado tu producto, envía un Pull Request a este repositorio
-   (puedes solicitar apoyo de tus profes para este paso).
+~~~
+[Promoters] = [Respuestas 9 o 10] / [Total respuestas] * 100
+[Passive] = [Respuestas 7 u 8] / [Total respuestas] * 100
+[Detractors] = [Respuestas entre 1 y 6] / [Total respuestas] * 100
 
-> Nota: No olvides que es una buena práctica describir tu proyecto en este
-> archivo `README.md` y también desplegar tu web a Github Pages :smiley:.
+[NPS] = [Promoters] - [Detractors]
+~~~
 
-## Objetivos del reto
+* La cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos técnicos en promedio y por sprint.
+* La cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos de HSE en promedio y por sprint.
+* El porcentaje de estudiantes satisfechas con la experiencia de Laboratoria.
+* La puntuación promedio de l@s profesores.
+* La puntuación promedio de l@s jedi masters.
 
-El reto consiste en:
+_Adicional:_
 
-* Crear propuesta para optimizar el tiempo de las TMs para poder visualizar los datos más rápidamente. Los datos serían: 
-  * El total de estudiantes presentes por sede y generación.
-  * El porcentaje de deserción de estudiantes.
-  * La cantidad de estudiantes que superan la meta de puntos en promedio de todos los sprints cursados. La meta de puntos   es 70% del total de puntos en HSE y en tech.
-  * El porcentaje que representa el dato anterior en relación al total de estudiantes.
-  * El Net Promoter Score (NPS) promedio de los sprints cursados. El NPS se calcula en base a la encuesta que las estudiantes responden al respecto de la recomendación que darían de Laboratoria, bajo la siguiente fórmula:
-
-   [Promoters] = [Respuestas 9 o 10] / [Total respuestas] * 100
-   [Passive] = [Respuestas 7 u 8] / [Total respuestas] * 100
-   [Detractors] = [Respuestas entre 1 y 6] / [Total respuestas] * 100
-
-   [NPS] = [Promoters] - [Detractors]
-
-* Sustentar tu propuesta y recolectar feedback.
-* Elegir tareas del backlog que creas que puedas completar durante el reto.
-* Crear plan de acción en pareja.
-* Documentar propuesta y plan de acción en el `README.md`.
-* Implementar la página usando `HTML`, `CSS` y `JS`.
-* Desplegar la página en GitHub pages.
-
-## Agenda
-
-### Día 1
-
-1. Presentación del producto final. (20 minutos)
-2. Asignación de parejas.
-3. Creación de un plan en parejas: Estimación de tiempo/tareas y decidir si incluir algo
-   del backlog (10min)
-4. Iniciar **implementación** y adaptar plan según sea necesario
-5. **Sketching**: Armar una propuesta y recolectar feedback (20min).
-
-
-## Consideraciones
-
-* Encontramos un archivo base `index.html` en el cual debemos escribir la
-  estructura de nuestro proyecto, enlazar el archivos CSS y también el archivo JS.
-
-* En la carpeta `css` encontramos un archivo base `main.css` donde agregaremos los
-  estilos necesarios de nuestro proyecto.
-
-* Dentro de la carpeta `assets` se encuentramos la carpeta `images` donde
-  encontramos todas las imágenes necesarias para completar nuestro proyecto.
-
-* **Actualizamos el archivo `README.md`** explicando nuestra propuesta y plan
-  de acción.
-
-* Utilizamos la paleta de colores característica de Laboratoria : `#ffc107`, `#eee` y `#2b2b2b`.
-
-* Los íconos de redes sociales los obtuvimos de [Font Awesome](http://fontawesome.io/) y [Icomoon](https://icomoon.io/).
-
-* Para este reto, necesitamos descubrir como manejar la data que nos brindaron. 
-
-## Backlog
-
-* Poder mostrar los datos procesados en un gráfico como el diseño de ejemplo propone u otra alternativa.
+*Poder mostrar los datos procesados en un gráfico como el diseño propone u otra alternativa.
 
 * Tener un botón que permita indicar que una estudiante ha salido del Bootcamp y alterar los totales afectados por este cambio.
 
-## Plan de acción
+***
 
-### Para el sketching 
+## Consideraciones:
 
-  * Fusionar ideas de nuestros sketchings personales y crear uno en común.
-  * Testear nuestro prototipado.
-  * Hacer mejoras según el testeo.
-  
-  * Prototipo de alta fidelidad :
-    ![Sketching](assets/images/sketching.jpg)
+*Para poder realizar el 'Code Review':*
 
-### Para el maquetado
+* Todas las integrantes del Squad explicaron brevemente su código y obtuvieron feedback sobre la limpieza y orden de lo ya mencionado.
 
-  * Comenzar a maquetar en base a nuestro prototipo.
+* Analizamos todos y cada uno de los productos finales, y elegimos el código que tiene un html y css mucho más organizado. Luego, recogimos lo mejor de cada integrante, y procedimos a pulir el código, para así construir en equipo el mejor producto final.
 
-### Para manejar la data 
+* Finalmente, todas nos preparamos para dar una buena exposición.
 
-  * Buscar inforación sobre cómo manejarla.
+***
 
-### Para agregar backlog
+## Plan de acción:
 
-  Escogimos las siguientes:
+* Como motivo de ayuda, realizamos un sketch con los puntos que nos pedían realizar, para así aclarar nuestras dudas.
 
-  * Añadir los gráficos.
+![Sketching](assets/images/img.jpg)
+
+***
+
+## Agenda:
+
+### Día 1
+
+1. En el aula, coordinamos los lugares y las horas en las que nos íbamos a reunir para realizar el trabajo en equipo.
+
+### Día 2
+
+1. Un grupo de compañeras (Lidia, Claudia y Katherine) se reunió el día sábado para dar comienzo al perfeccionamiento del código.
 
 
-## Tiempos estimados
+### Día 3
 
-* Para el sketching y maquetado: *1 día.*
+1. El Squad se reunió en casa de una compañera (Stephanie) el día domingo y procedimos a continuar trabajando en el proyecto.
 
-* Para manejar la data: *2 días.*
+### Fotos referenciales:
 
-* Para agregar backlog: *hrs.*
+![AylluCoders](assets/images/ayllucoders1.jpg)
+![AylluCoders](assets/images/ayllucoders2.jpg)
+![AylluCoders](assets/images/ayllucoders5.jpg)
+![AylluCoders](assets/images/ayllucoders4.jpg)
