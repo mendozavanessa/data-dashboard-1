@@ -16,7 +16,9 @@ window.addEventListener('load', function() {
     npsPorciento = document.getElementById('nps-porciento'),
     boxExpectativa = document.getElementById('box-expectativa'),
     pointTech = document.getElementById('tech'),
-    pointHse = document.getElementById('hse');
+    pointHse = document.getElementById('hse'),
+    totalTechSprint = document.getElementById('totalTechSprint'),
+    prctTechSprint = document.getElementById('prctTechSprint');
   filtro.addEventListener('change', function(event) {
     switch (event.target.value) {
     case '0': sedePromo('LIM', '2016-2');
@@ -42,6 +44,7 @@ window.addEventListener('load', function() {
     }
     // funcion que llamara cada caso que pertenezca la opcion clikeada como parametros pasamos la sede y la promocion datos que estan en la data.js
     function sedePromo(sede, promo) {
+      sprintFunction(sede, promo);
       // respondiendo primera pregunta. Hallando la cantidad de alumnas y el porcentaje recorriendo un array se puede contar cuantas alumnas hay
       var arr = data[sede][promo]['students'];
       var current = 0;
@@ -58,23 +61,27 @@ window.addEventListener('load', function() {
       porcentaje.textContent = deserted + '%';
       drawTotalStudents(current, deserted);
       /* ***************************************************Cantida de alumnas que superan el objetivo*****************************************************/
-      var sumaScore = 0;
-      for (var i = 0; i < arr.length; i++) {
-        var sumaHse = 0;
-        var sumaTech = 0;
-        for (var j = 0; j < data[sede][promo]['students'][i]['sprints'].length; j++) {
-          var tech = data[sede][promo]['students'][i]['sprints'][j]['score']['tech'];
-          var hse = data[sede][promo]['students'][i]['sprints'][j]['score']['hse'];
-          sumaHse = sumaHse + hse;
-          sumaTech = sumaTech + tech;
+      var SumScoreSprintHse = 0;
+      var SumScoreSprintTech = 0;
+      var stuContar = 0;
+      for (var i = 0; i < data[sede][promo].students.length ; i++) {
+        var studentsTotal = data[sede][promo].students.length;
+        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+          var indicatorHse = 840 * (data[sede][promo].students[i].sprints.length);
+          var indicatorTech = 1260 * (data[sede][promo].students[i].sprints.length);
+          var stuScoreHse = data[sede][promo].students[i].sprints[j].score.hse;
+          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
+          SumScoreSprintHse += stuScoreHse;
+          SumScoreSprintTech += stuScoreTech;
+        } if (SumScoreSprintHse >= indicatorHse && SumScoreSprintTech >= indicatorTech) {
+          stuContar += 1;
         }
-        if (sumaHse > 3360 && sumaTech > 5040) {
-          sumaScore++;
-        }
+        SumScoreSprintHse = 0;
+        SumScoreSprintTech = 0;
       }
-      meta.innerHTML = sumaScore;
-      var prctsumaScore = ((sumaScore / arr.length) * 100).toFixed(2);
-      prctmeta.textContent = prctsumaScore + '%';
+      var prctStucontar = ((stuContar / studentsTotal) * 100).toFixed(2);
+      meta.innerHTML = stuContar;
+      prctmeta.textContent = prctStucontar + '%';
 
       /* ***************************************************************cantida de nps*********************************************************************/
       var totalNpsSprint = 0;
@@ -118,10 +125,7 @@ window.addEventListener('load', function() {
         sprintArray[i] = arrayNPS[i];
       }
       drawNetPromoter(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
-      /* *********************************************calculando los puntos obtenidos en tech********************************************************************/
-      
-      /* ********************************************************calculando los puntos en hse*******************************************************************/
-      
+     
       /* **************************************porcentaje de la expectativa de las alumnas respecto a laboratoria**************************************************/
       var pctjStudentsSat = 0;
       var arrayMeet = [];
@@ -175,11 +179,32 @@ window.addEventListener('load', function() {
       drawJediRatings(sprintArray[0], sprintArray[1], sprintArray[2], sprintArray[3]);
     }
   });
+  function sprintFunction(sede, promo) {
+    sprintFiltroTech.addEventListener('change', function(event) {
+      var nsprint = parseInt(event.target.value) + 1;
+      var arraySprintTech = [0, 0, 0, 0];
+
+      for (var i = 0; i < data[sede][promo].students.length ; i++) {
+        var totalStudents = data[sede][promo].students.length;
+        for (var j = 0; j < data[sede][promo].students[i].sprints.length ; j++) {
+          var stuScoreTech = data[sede][promo].students[i].sprints[j].score.tech;
+          var sprintNumber = data[sede][promo].students[i].sprints[j].number;
+          if (sprintNumber == nsprint && stuScoreTech >= 1260) {
+            arraySprintTech[nsprint - 1] = arraySprintTech[nsprint - 1] + 1;              
+          }
+        }
+      }
+       totalTechSprint.textContent = arraySprintTech[nsprint - 1];
+       prctTechSprint.textContent  = (((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2) + '%';
+     /* alert(arraySprintTech[nsprint - 1]);
+      alert((((arraySprintTech[nsprint - 1]) / data[sede][promo].students.length) * 100).toFixed(2));*/
+    });
+  }
 });
 
-/*******GRAFICOS */
+/** *****GRAFICOS */
 function drawTotalStudents(current, deserted) {
-  google.charts.load('current', {'packages':['corechart']});
+  google.charts.load('current', {'packages': ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var dataTest = new google.visualization.DataTable();
@@ -288,8 +313,7 @@ function drawTeacherRating(s1, s2, s3, s4) {
     chart.draw(view, options);
   }
 }
-function drawJediRatings(s1, s2, s3, s4) { 
-  
+function drawJediRatings(s1, s2, s3, s4) {
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
