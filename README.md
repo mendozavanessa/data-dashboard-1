@@ -98,3 +98,15 @@ _Adicional:_
 ![AylluCoders](assets/images/ayllucoders2.jpg)
 ![AylluCoders](assets/images/ayllucoders5.jpg)
 ![AylluCoders](assets/images/ayllucoders4.jpg)
+
+___
+
+### **Alumnas**
+
+>##### Lidia Ramirez
+>##### Vanessa Mendoza Inoñan
+>##### Claudia Garibotto
+>##### Yosseline Apcho
+>##### Aurora Vasquez
+>##### Stephanie Wong
+>##### Alexandra Calderon
