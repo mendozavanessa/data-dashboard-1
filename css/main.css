@@ -79,7 +79,7 @@ text-transform: uppercase;
 }
 
 .form-control {
-    width: 400px;
+    width: 255px;
     border-radius: 21px;
     border: 1px solid #e6ecf0;
     color: #14171a;
@@ -244,7 +244,6 @@ border: 2px solid #1f4658;
 .content-wrapper {
   margin-left: 230px;
   background: #f7f7f7;
-  width: 90%;
   height: 1700px;
 }
 
