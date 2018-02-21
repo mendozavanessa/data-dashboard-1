@@ -1,4 +1,11 @@
-# LABORATORIA - DATA DASHBOARD
+## DATA DASHBOARD
+Data dashboard es una herramienta por la cual Laboratoria puede analizar la mayor cantidad de datos posibles respecto al desempeño de las estudiantes.
+
+![vistaFinal](assets/images/readme1.png)
+
+
+## Desarrollado para
+[Laboratoria](http://laboratoria.la)
 
 * **Track:** _Common Core._
 * **Curso:** _Creando un sitio web interactivo con javascript._
@@ -64,7 +71,7 @@ _Adicional:_
 
 ![Sketching](assets/images/img.jpg)
 
-* Además realizamos un mockup de nuestro sketching. 
+* Además realizamos un mockup de nuestro sketching.
 
 [Dashboard-Marvel](https://marvelapp.com/5a5b65b/screen/35762645/handoff).
 
