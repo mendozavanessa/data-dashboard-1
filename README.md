@@ -1,4 +1,4 @@
-## DATA DASHBOARD
+# DATA DASHBOARD
 Data dashboard es una herramienta por la cual Laboratoria puede analizar la mayor cantidad de datos posibles respecto al desempeño de las estudiantes.
 
 ![vistaFinal](assets/images/readme1.png)
